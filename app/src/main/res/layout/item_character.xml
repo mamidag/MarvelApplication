@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+        <variable
+            name="resultData"
+            type="com.example.marvelcharacters.api.model.data.result.Result" />
+    </data>
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/card"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <!-- Media -->
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/iv_character"
+                characterImage="@{resultData.thumbnail.path +`.`+resultData.thumbnail.extension }"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_194sdp"
+                android:scaleType="centerCrop" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="16dp">
+
+                <!-- Title, secondary and supporting text -->
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/title"
+                    android:text="@{resultData.name}"
+                    android:textAppearance="?attr/textAppearanceHeadline6" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:hint="@string/desc"
+                    android:text="@{resultData.description}"
+                    android:textAppearance="?attr/textAppearanceBody2"
+                    android:textColor="?android:attr/textColorSecondary" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:hint="@string/desc"
+                    android:text="@{resultData.modified}"
+                    android:textAppearance="?attr/textAppearanceBody2"
+                    android:textColor="?android:attr/textColorSecondary" />
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                android:orientation="horizontal">
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnDetail"
+                    style="?attr/borderlessButtonStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="8dp"
+                    android:text="@string/detail" />
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </com.google.android.material.card.MaterialCardView>
+
+</layout><!--
+<androidx.constraintlayout.widget.ConstraintLayout
+android:layout_width="wrap_content"
+android:layout_height="wrap_content"
+android:padding="@dimen/_5sdp"
+    >
+<androidx.cardview.widget.CardView
+    android:layout_width="@dimen/_80sdp"
+    android:layout_height="@dimen/_100sdp"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toTopOf="parent">
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/iv_character"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        characterImage="@{resultData.thumbnail.path +`.`+resultData.thumbnail.extension }"
+        />
+</androidx.cardview.widget.CardView>
+</androidx.constraintlayout.widget.ConstraintLayout>-->

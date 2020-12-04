@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="character"
+            type="com.example.marvelcharacters.api.model.data.result.Result" />
+
+    </data>
+
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/card"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <!-- Media -->
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:cardCornerRadius="@dimen/_1sdp"
+                app:cardElevation="@dimen/_10sdp"
+                >
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/iv_character"
+                characterImage="@{character.thumbnail.path +`.`+character.thumbnail.extension }"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_174sdp"
+                android:scaleType="centerCrop" />
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_gravity="bottom"
+                android:background="@color/white"
+                android:padding="16dp">
+
+                <!-- Title, secondary and supporting text -->
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/title"
+                    android:textColor="@color/black"
+                    android:text="@{character.name}"
+                    android:textAppearance="?attr/textAppearanceHeadline6" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:hint="@string/desc"
+                    android:textColor="@color/black"
+                    android:text="@{character.description}"
+                    android:maxLines="3"
+                    android:ellipsize="marquee"
+                    android:textAppearance="?attr/textAppearanceBody2"
+                    />
+            </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_comic"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="@dimen/_10sdp"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
+        </LinearLayout>
+
+
+    </com.google.android.material.card.MaterialCardView>
+</layout>
