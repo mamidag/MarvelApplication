@@ -1,6 +1,7 @@
 package com.example.marvelcharacters.binding
 
 import android.widget.TextView
+
 import androidx.appcompat.widget.AppCompatImageView
 import androidx.databinding.BindingAdapter
 import com.bumptech.glide.Glide
@@ -23,12 +24,19 @@ fun setCharacterImage(imageView: AppCompatImageView, url: String?) {
         .fitCenter()
         .into(imageView)
 }
-@BindingAdapter("generatingDate")
-fun setModify(textView: TextView,modify: String?){
-    val originalFormat: DateFormat = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss-SSSS")
-    val targetFormat: DateFormat = SimpleDateFormat("yyyy-MM-dd")
-    val date: Date = originalFormat.parse(modify)
-    val formattedDate: String = targetFormat.format(date)
 
-    textView.text= formattedDate
+@BindingAdapter("generatingDate")
+fun setModify(textView: TextView, modify: String?) {
+    if (modify != null) {
+        val originalFormat: DateFormat = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss-SSSS")
+        val targetFormat: DateFormat = SimpleDateFormat("yyyy-MM-dd")
+        val date: Date = originalFormat.parse(modify)
+        val formattedDate: String = targetFormat.format(date)
+        textView.text = formattedDate
+    } else {
+        textView.text = modify.toString()
+    }
+
 }
+
+

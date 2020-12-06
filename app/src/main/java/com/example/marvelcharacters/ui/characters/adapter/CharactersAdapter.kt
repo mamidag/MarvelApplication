@@ -9,10 +9,10 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.marvelcharacters.R
 import com.example.marvelcharacters.api.model.data.result.Result
 import com.example.marvelcharacters.databinding.ItemCharacterBinding
+import com.example.marvelcharacters.listener.IListener
 
 
-
-class CharactersAdapter(val itemClickListener: OnItemClickListener) :
+class CharactersAdapter(val itemClickListener: IListener<Result>) :
 
     PagingDataAdapter<Result, CharactersAdapter.CategoryHolder>(MovieComparator) {
 
@@ -38,9 +38,9 @@ class CharactersAdapter(val itemClickListener: OnItemClickListener) :
     class CategoryHolder(val recyclerviewChracterBinding: ItemCharacterBinding) :
         RecyclerView.ViewHolder(recyclerviewChracterBinding.root) {
 
-        fun bind(result: Result, clickListener: OnItemClickListener) {
+        fun bind(result: Result, clickListener: IListener<Result>) {
             recyclerviewChracterBinding.btnDetail.setOnClickListener {
-                clickListener.onItemClicked(result)
+                clickListener.onClick(result)
 
 /*
                 it.navigateSafe(R.id.action_charactersFragment_to_characterDetailFragment)
@@ -62,7 +62,4 @@ class CharactersAdapter(val itemClickListener: OnItemClickListener) :
 }
 
 
-interface OnItemClickListener {
-    fun onItemClicked(result: Result)
-}
 

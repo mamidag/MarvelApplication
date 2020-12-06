@@ -13,8 +13,8 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.marvelcharacters.R
 import com.example.marvelcharacters.api.model.data.result.Result
 import com.example.marvelcharacters.databinding.FragmentCharactersBinding
+import com.example.marvelcharacters.listener.IListener
 import com.example.marvelcharacters.ui.characters.adapter.CharactersAdapter
-import com.example.marvelcharacters.ui.characters.adapter.OnItemClickListener
 import com.example.marvelcharacters.util.extensions.navigateSafe
 import com.example.marvelcharacters.util.keys.BundleKeys
 import dagger.hilt.android.AndroidEntryPoint
@@ -24,7 +24,7 @@ import androidx.lifecycle.lifecycleScope as scope
 
 @ExperimentalCoroutinesApi
 @AndroidEntryPoint
-class CharactersFragment : Fragment(), OnItemClickListener {
+class CharactersFragment : Fragment(), IListener<Result> {
 
     private val charactersViewModel: CharactersViewModel by viewModels()
     lateinit var binding: FragmentCharactersBinding
@@ -74,16 +74,6 @@ class CharactersFragment : Fragment(), OnItemClickListener {
 
     }
 
-    override fun onItemClicked(result: Result) {
-
-
-        val bundle = Bundle().apply {
-            putParcelable(BundleKeys.result, result)
-        }
-
-        navigateSafe(R.id.action_charactersFragment_to_characterDetailFragment, bundle)
-
-    }
 
     override fun onDestroyView() {
         super.onDestroyView()
@@ -107,5 +97,12 @@ class CharactersFragment : Fragment(), OnItemClickListener {
             lastFirstVisiblePosition
         )
 
+    }
+
+    override fun onClick(result: Result) {
+        val bundle = Bundle().apply {
+            putParcelable(BundleKeys.result, result)
+        }
+        navigateSafe(R.id.action_charactersFragment_to_characterDetailFragment, bundle)
     }
 }

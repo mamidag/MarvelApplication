@@ -5,6 +5,7 @@
         <variable
             name="comic"
             type="com.example.marvelcharacters.api.model.data.result.Result" />
+
     </data>
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/card"

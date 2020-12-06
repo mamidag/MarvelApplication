@@ -7,20 +7,16 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.marvelcharacters.R
 import com.example.marvelcharacters.api.model.data.result.Result
 import com.example.marvelcharacters.databinding.FragmentCharacterDetailBinding
 import com.example.marvelcharacters.dataresource.Status
-import com.example.marvelcharacters.ui.characters.adapter.CharactersAdapter
 import com.example.marvelcharacters.ui.detail.adapter.ComicAdapter
 import com.example.marvelcharacters.util.keys.BundleKeys
-import com.github.ajalt.timberkt.d
-import com.github.ajalt.timberkt.e
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.ExperimentalCoroutinesApi
-import kotlinx.coroutines.FlowPreview
+
 
 
 @ExperimentalCoroutinesApi
@@ -31,14 +27,16 @@ class CharacterDetailFragment : Fragment() {
 
     lateinit var binding: FragmentCharacterDetailBinding
 
-    lateinit var comicAdapter : ComicAdapter
+
+    lateinit var comicAdapter: ComicAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         val view = inflater.inflate(R.layout.fragment_character_detail, container, false)
-        binding = DataBindingUtil.setContentView(requireActivity(), R.layout.fragment_character_detail)
+        binding =
+            DataBindingUtil.setContentView(requireActivity(), R.layout.fragment_character_detail)
         return view
     }
 
@@ -59,12 +57,6 @@ class CharacterDetailFragment : Fragment() {
                 binding.rvComic.adapter = comicAdapter
             }
         })
-
-
-
-
-
-
 
 
     }
